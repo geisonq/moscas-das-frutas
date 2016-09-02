@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_main"
+    tools:context=".CameraActivity"
+    android:id="@+id/relativeLayoutMainContent"
+    android:background="#ffffff">
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CONTINUAR"
+        android:id="@+id/btnIniciar"
+        android:background="@drawable/corner"
+        android:nestedScrollingEnabled="false"
+        android:onClick="setContentView"
+        android:textColor="@color/abc_secondary_text_material_dark"
+        android:padding="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imgHelp"
+        android:src="@drawable/help1"
+        android:baselineAlignBottom="true"
+        android:paddingTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/btnIniciar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Para continuar, tire uma foto com o aplicativo e centralize a peneira no centro da foto."
+        android:id="@+id/textHelp"
+        android:layout_alignRight="@+id/imgHelp"
+        android:layout_alignEnd="@+id/imgHelp"
+        android:layout_alignTop="@+id/imgHelp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:lines="@integer/abc_max_action_buttons"
+        android:textColor="#5F9EA0"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp" />
+
+
+</RelativeLayout>

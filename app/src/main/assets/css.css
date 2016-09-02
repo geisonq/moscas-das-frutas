@@ -1,0 +1,32 @@
+  @font-face {
+    font-family: myFirstFont;
+    src: url('PTF55F.ttf');
+}
+
+  body{
+    overflow: hidden;
+  }
+
+  ul li {
+    list-style-type:none;
+  }
+
+  html, body,  {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  position:relative;
+  top: 0;
+  z-index:0;
+}
+         
+
+
+#cart1, #cart2 , #cart3 {
+ font-family: myFirstFont;
+}
+
+#cart2 , #cart3 {
+ display: none;
+ }

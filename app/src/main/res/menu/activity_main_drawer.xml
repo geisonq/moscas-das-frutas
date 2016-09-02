@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single"
+        android:title="Menu">
+        <item
+            android:id="@+id/nav_camara_live"
+            android:icon="@android:drawable/presence_video_online"
+            android:title="Camera Automatica" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Camera Manual" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Cartilha Digital" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Galeria de Fotos" />
+    </group>
+</menu>

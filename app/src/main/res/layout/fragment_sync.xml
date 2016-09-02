@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.geisonquevedo.moscadasfrutas.SyncFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionGroup="true"
+        android:padding="2dp">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sincronizar"
+            android:id="@+id/button"
+            android:layout_marginBottom="30dp"
+            android:theme="@style/AppTheme.PopupOverlay"
+            android:textColor="@color/abc_secondary_text_material_dark"
+            android:textSize="@dimen/abc_floating_window_z"
+            android:shadowColor="@color/accent_material_light"
+            android:background="@drawable/corner"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</FrameLayout>
