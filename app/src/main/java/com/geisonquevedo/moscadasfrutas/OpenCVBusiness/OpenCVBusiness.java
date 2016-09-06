@@ -160,7 +160,7 @@ public class OpenCVBusiness {
         Mat handledImage;
         Mat matImageWithoudBorders = new Mat();
         Mat imageDenoising = new Mat();
-        ;
+
         Bitmap bmp;
 
         //Do:
@@ -188,7 +188,7 @@ public class OpenCVBusiness {
         mMOP2f2 = new MatOfPoint2f();
 
         ArrayList<Integer> imagesToMatch = new ArrayList<Integer>();
-
+        Log.i("Passo","Passo2");
         for (int i = 0; i < contours.size(); i++) {
             if (contours.get(i).toList().size() > 80) {
                 Log.i("CAMERA", "Size: " + contours.get(i).toList().size());
@@ -235,6 +235,7 @@ public class OpenCVBusiness {
             }
         }
 
+        Log.i("Passo","Passo3");
         //Does the trick
         contours = new ArrayList<MatOfPoint>();
         hierarchy = new Mat();
@@ -260,10 +261,10 @@ public class OpenCVBusiness {
                 }
             }
         }
-
+        Log.i("Passo","Passo5");
         bmp = Bitmap.createBitmap(handledImage.cols(), handledImage.rows(), Bitmap.Config.RGB_565);
         Utils.matToBitmap(imageDenoising, bmp);
-
+        Log.i("Passo","Passo6");
         saveBitmap.save(bmp, lastInsertId, false, "");
 
         return bmp;
@@ -285,7 +286,7 @@ public class OpenCVBusiness {
                 new Scalar(48, 1.00 * 256, 1.00 * 256),
                 imgThresh);
 
-        int erosionType = Imgproc.MORPH_RECT;
+      /*  int erosionType = Imgproc.MORPH_RECT;
         int erosionSize = 5;
 
         Mat element = Imgproc.getStructuringElement(erosionType,
@@ -301,7 +302,7 @@ public class OpenCVBusiness {
                 new Size(2 * dilatationSize + 1, 2 * dilatationSize + 1),
                 new Point(dilatationSize, dilatationSize));
 
-        Imgproc.dilate(erosionDst, dilatationDst, element);
+        Imgproc.dilate(erosionDst, dilatationDst, element);*/
 
         return imgThresh;
     }

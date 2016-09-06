@@ -34,7 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import uk.co.senab.photoview.PhotoViewAttacher;
+import com.victor.loading.newton.NewtonCradleLoading;
 
 
 /**
@@ -52,7 +52,7 @@ public class CameraNativaFragment extends Fragment {
     ImageButton imgBtnProc;
     ImageButton imgBtnCancel;
     ImageView imgProfilePic;
-    PhotoViewAttacher mAttacher;
+    //PhotoViewAttacher mAttacher;
 
     private static int REQUEST_GALLERY = 1;
     private static int REQUEST_CAMERA = 2;
@@ -192,6 +192,7 @@ public class CameraNativaFragment extends Fragment {
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
+                            Log.i("Passo","");
                             imgProfilePic.setImageBitmap(this.imgToShow);
                             showProcessImages();
                         }

@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.geisonquevedo.moscadasfrutas.OpenCVBusiness.OpenCVBusiness;
 import com.geisonquevedo.moscadasfrutas.OpenCVBusiness.ProcessImageAsyncTask;
 import com.geisonquevedo.moscadasfrutas.utils.SaveBitmap;
 
@@ -33,8 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import uk.co.senab.photoview.PhotoViewAttacher;
-
+import com.victor.loading.newton.NewtonCradleLoading;
 
 /**
  * ff
@@ -51,7 +51,8 @@ public class CameraFragment extends Fragment {
     ImageButton imgBtnProc;
     ImageButton imgBtnCancel;
     ImageView imgProfilePic;
-    PhotoViewAttacher mAttacher;
+    NewtonCradleLoading newtonCradleLoading;
+    //PhotoViewAttacher mAttacher;
 
     private static int REQUEST_GALLERY = 1;
     private static int REQUEST_CAMERA = 2;
@@ -109,6 +110,9 @@ public class CameraFragment extends Fragment {
         imageButton = (ImageButton) v.findViewById(R.id.imageButton);
         imgBtnProc = (ImageButton) v.findViewById(R.id.imgBtnProc);
         imgBtnCancel = (ImageButton) v.findViewById(R.id.imgBtnCancel);
+
+        newtonCradleLoading = (NewtonCradleLoading) v.findViewById(R.id.newton_cradle_loading);
+
         //mAttacher = new PhotoViewAttacher(imgProfilePic);
 
         processImage();
@@ -220,9 +224,11 @@ public class CameraFragment extends Fragment {
                     new ProcessImageAsyncTask(getActivity(), src) {
                         @Override
                         protected void onPostExecute(Void aVoid) {
+                            Log.i("Passo","Passo CAMERA FRAGMENT1");
                             super.onPostExecute(aVoid);
+                            Log.i("Passo","Passo CAMERA FRAGMENT2");
                             imgProfilePic.setImageBitmap(this.imgToShow);
-                            //mAttacher.update();
+                            Log.i("Passo","Passo CAMERA FRAGMENT3");
                             showProcessImages();
                         }
                     }.execute();
@@ -274,16 +280,22 @@ public class CameraFragment extends Fragment {
         Bitmap bmp32 = bmp.copy(Bitmap.Config.RGB_565, true);
         Utils.bitmapToMat(bmp32, src);
 
-        new ProcessImageAsyncTask(getActivity(), src) {
+        newtonCradleLoading.start();
+        OpenCVBusiness openCVBusiness = new OpenCVBusiness(context);
+        imgProfilePic.setImageBitmap(openCVBusiness.processImage(src));
+        showProcessImages();
+        newtonCradleLoading.stop();
+       /* new ProcessImageAsyncTask(getActivity(), src) {
             @Override
             protected void onPostExecute(Void aVoid) {
+                Log.i("Passo","Passo CAMERA FRAGMENT1");
                 super.onPostExecute(aVoid);
                 imgProfilePic.setImageBitmap(this.imgToShow);
-
                 showProcessImages();
+                Log.i("Passo","Passo11112 ------END");
                 //mAttacher.update();
             }
-        }.execute();
+        }.execute();*/
 
 
     }

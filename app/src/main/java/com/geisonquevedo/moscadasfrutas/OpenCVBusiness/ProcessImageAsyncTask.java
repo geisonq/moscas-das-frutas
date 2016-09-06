@@ -36,8 +36,11 @@ public class ProcessImageAsyncTask extends AsyncTask<Void, Integer, Void> {
             Log.i("ProcessImagesAsyncTask","------ProcessImagesAsyncTask-------");
             OpenCVBusiness openCVBusiness = new OpenCVBusiness(context);
             this.imgToShow = openCVBusiness.processImage(this.src);
+            Log.i("Passo","Passo1111");
 
+            progressDialog.dismiss();
         } catch (InterruptedException e) {
+            Log.i("Passo","ERROOO");
             e.printStackTrace();
         }
 

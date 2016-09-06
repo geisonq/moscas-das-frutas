@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import com.geisonquevedo.moscadasfrutas.utils.SaveBitmap;
+import com.victor.loading.newton.NewtonCradleLoading;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -35,6 +36,7 @@ import org.opencv.imgproc.Imgproc;
 public class CameraActivity extends Activity implements CvCameraViewListener2, OnTouchListener {
 
     private CameraBridgeViewBase mOpenCvCameraView;
+    private NewtonCradleLoading newtonCradleLoading;
 
     Mat mRgba;
     Mat mGray;
@@ -87,6 +89,7 @@ public class CameraActivity extends Activity implements CvCameraViewListener2, O
 
         btnLeft = (ImageButton) findViewById(R.id.btnLeft);
         btnRight = (ImageButton) findViewById(R.id.btnRight);
+        newtonCradleLoading = (NewtonCradleLoading) findViewById(R.id.newton_cradle_loading);
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
@@ -162,6 +165,11 @@ public class CameraActivity extends Activity implements CvCameraViewListener2, O
                 // Quando encontra a sequencia de frames com a armadilha
                 //  na posição correta, uma imagem é registrada
                 if (cCurrSeq == 20) {
+                    mOpenCvCameraView.getHandler().post(new Runnable() {
+                        public void run() {
+                            newtonCradleLoading.start();
+                        }
+                    });
 
                     Mat mask = createMask(mRgba);
 
@@ -177,8 +185,20 @@ public class CameraActivity extends Activity implements CvCameraViewListener2, O
                     Utils.matToBitmap(imagemMascarada, bmp);
                     saveBitmap.save(bmp, "temp", true, "automatically");
 
-                    loadCameraFragment();
+                    mOpenCvCameraView.getHandler().post(new Runnable() {
+                        public void run() {
+                            Intent myIntent = new Intent(CameraActivity.this, MainActivity.class);
+                            myIntent.putExtra("startIntend", "CameraFragnent");
+                            CameraActivity.this.startActivity(myIntent);
+                            mOpenCvCameraView.disableView();
+                        }
+                    });
 
+                    mOpenCvCameraView.getHandler().post(new Runnable() {
+                        public void run() {
+                            newtonCradleLoading.stop();
+                        }
+                    });
                 }
 
                 //Desenha o circulo amarelo, para informar onde esta a arnadilha
@@ -234,8 +254,8 @@ public class CameraActivity extends Activity implements CvCameraViewListener2, O
         2ª CONVERTO DE BMP PARA MAT
         3ª CONVERTO DE MAT PARA MAT GRAY
         * */
-        bmpMask = Bitmap.createBitmap(imgThresh.cols(), imgThresh.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(imgThresh, bmpMask);
+        bmpMask = Bitmap.createBitmap(imgThreshBlue.cols(), imgThreshBlue.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(imgThreshBlue, bmpMask);
         Utils.bitmapToMat(bmpMask, imgThresh);
         Imgproc.cvtColor(imgThresh, imgThresh, Imgproc.COLOR_RGB2GRAY);
 
